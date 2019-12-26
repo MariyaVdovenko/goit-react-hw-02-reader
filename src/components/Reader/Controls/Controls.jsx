@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from '../Reader.module.css';
 
-const Controls = ({ incrPublication, decrPublication, activButton }) => (
+const Controls = ({
+  incrPublication,
+  decrPublication,
+  activButton,
+  activButtonFwd,
+}) => (
   <section className={styles.controls}>
     <button
       onClick={decrPublication}
@@ -11,7 +16,12 @@ const Controls = ({ incrPublication, decrPublication, activButton }) => (
     >
       Назад
     </button>
-    <button onClick={incrPublication} type="button" className={styles.button}>
+    <button
+      onClick={incrPublication}
+      type="button"
+      disabled={!activButtonFwd}
+      className={styles.button}
+    >
       Вперед
     </button>
   </section>

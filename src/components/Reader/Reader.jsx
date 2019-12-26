@@ -12,13 +12,15 @@ export default class Reader extends Component {
   state = {
     current: 0,
     activButton: false,
+    activButtonFwd: true,
   };
 
   incrPublication = evt => {
-    if (this.state.current + 1 === this.props.items.length) {
-      alert('You have read all publications');
+    console.log(this.state.current);
+    console.log(this.props.items.length);
 
-      return;
+    if (this.state.current + 2 === this.props.items.length) {
+      this.setState(state => ({ activButtonFwd: false }));
     }
 
     this.setState(state => ({
@@ -27,9 +29,8 @@ export default class Reader extends Component {
     }));
   };
   decrPublication = evt => {
-    if (this.state.current + 1 === 1) {
+    if (this.state.current === 1) {
       this.setState(state => ({ activButton: false }));
-      return;
     }
 
     this.setState(state => ({
@@ -38,13 +39,14 @@ export default class Reader extends Component {
   };
 
   render() {
-    const { current } = this.state;
-    const { activButton } = this.state;
+    const { current, activButtonFwd, activButton } = this.state;
+
     console.log(activButton);
     return (
       <div className={styles.reader}>
         <Controls
           activButton={activButton}
+          activButtonFwd={activButtonFwd}
           incrPublication={this.incrPublication}
           decrPublication={this.decrPublication}
         />
