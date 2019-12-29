@@ -1,30 +1,33 @@
 import React from 'react';
-import styles from '../Reader.module.css';
+import styles from '../App.module.css';
+import T from 'prop-types';
 
-const Controls = ({
-  incrPublication,
-  decrPublication,
-  activButton,
-  activButtonFwd,
-}) => (
+const Controls = ({ handleClick, current, total }) => (
   <section className={styles.controls}>
     <button
-      onClick={decrPublication}
+      onClick={handleClick}
       type="button"
-      disabled={!activButton}
+      disabled={current === 0}
       className={styles.button}
+      name="decrement"
     >
       Назад
     </button>
     <button
-      onClick={incrPublication}
+      onClick={handleClick}
       type="button"
-      disabled={!activButtonFwd}
+      disabled={total < current + 2}
+      name="increment"
       className={styles.button}
     >
       Вперед
     </button>
   </section>
 );
+
+Controls.propTypes = {
+  current: T.number.isRequired,
+  total: T.number.isRequired,
+};
 
 export default Controls;

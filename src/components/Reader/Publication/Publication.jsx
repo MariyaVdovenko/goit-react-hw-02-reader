@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from '../Reader.module.css';
+import styles from '../App.module.css';
+import T from 'prop-types';
 
 const Publication = ({ item }) => {
   return (
@@ -9,4 +10,13 @@ const Publication = ({ item }) => {
     </article>
   );
 };
+
+Publication.propType = {
+  item: T.shape({
+    id: T.string.isRequired,
+    title: T.string,
+    text: T.string,
+  }),
+};
+
 export default Publication;
