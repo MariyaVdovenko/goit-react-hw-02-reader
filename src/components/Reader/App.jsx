@@ -20,14 +20,10 @@ export default class App extends Component {
     current: 0,
   };
 
-  handleClick = evt => {
-    evt.currentTarget.name === 'increment'
-      ? this.setState(state => ({
-          current: state.current + 1,
-        }))
-      : this.setState(state => ({
-          current: state.current - 1,
-        }));
+  handleClick = ({ target: { name } }) => {
+    this.setState(state => ({
+      current: name === 'increment' ? state.current + 1 : state.current - 1,
+    }));
   };
 
   render() {
